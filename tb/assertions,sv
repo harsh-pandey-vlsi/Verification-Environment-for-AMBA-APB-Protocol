@@ -1,0 +1,62 @@
+module apb_assertions(apb_if vif);
+
+property psel_before_penable;
+
+   @(posedge vif.PCLK)
+
+   vif.PENABLE |-> vif.PSEL;
+
+endproperty
+
+assert property(psel_before_penable);
+
+property stable_addr;
+
+   @(posedge vif.PCLK)
+
+   vif.PSEL &&
+   vif.PENABLE &&
+   !vif.PREADY
+
+   |->
+
+   $stable(vif.PADDR);
+
+endproperty
+
+assert property(stable_addr);
+
+property stable_wdata;
+
+   @(posedge vif.PCLK)
+
+   vif.PSEL &&
+   vif.PENABLE &&
+   vif.PWRITE &&
+   !vif.PREADY
+
+   |->
+
+   $stable(vif.PWDATA);
+
+endproperty
+
+assert property(stable_wdata);
+
+property completion;
+
+   @(posedge vif.PCLK)
+
+   vif.PSEL &&
+   vif.PENABLE &&
+   vif.PREADY
+
+   |=>
+
+   !vif.PSEL;
+
+endproperty
+
+assert property(completion);
+
+endmodule
