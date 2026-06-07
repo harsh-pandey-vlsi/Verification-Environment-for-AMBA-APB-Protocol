@@ -1,0 +1,100 @@
+run -all
+# [SB PASS] ADDR=a EXP=0 GOT=0
+# [SB PASS] ADDR=1a EXP=0 GOT=0
+# [SB] WRITE ADDR=50 DATA=bb4a4a03
+# [SB] WRITE ADDR=ad DATA=8f6637c
+# [SB PASS] ADDR=e3 EXP=0 GOT=0
+# [SB PASS] ADDR=29 EXP=0 GOT=0
+# [SB] WRITE ADDR=16 DATA=2ad91b81
+# [SB] WRITE ADDR=2f DATA=9f73a14b
+# [SB PASS] ADDR=5 EXP=0 GOT=0
+# [SB PASS] ADDR=37 EXP=0 GOT=0
+# [SB] WRITE ADDR=f3 DATA=b3cde443
+# [SB PASS] ADDR=ed EXP=0 GOT=0
+# [SB] WRITE ADDR=26 DATA=33f86e13
+# [SB] WRITE ADDR=8b DATA=c3f6ed45
+# [SB] WRITE ADDR=1b DATA=2f208b07
+# [SB PASS] ADDR=e7 EXP=0 GOT=0
+# [SB] WRITE ADDR=60 DATA=68cf5630
+# [SB PASS] ADDR=1f EXP=0 GOT=0
+# [SB PASS] ADDR=7d EXP=0 GOT=0
+# [SB] WRITE ADDR=73 DATA=408281ed
+# [SB PASS] ADDR=f9 EXP=0 GOT=0
+# [SB] WRITE ADDR=ba DATA=a193d427
+# [SB] WRITE ADDR=5 DATA=8b5b06fc
+# [SB PASS] ADDR=6c EXP=0 GOT=0
+# [SB PASS] ADDR=21 EXP=0 GOT=0
+# [SB PASS] ADDR=1a EXP=0 GOT=0
+# [SB] WRITE ADDR=0 DATA=d1943a0
+# [SB] WRITE ADDR=ef DATA=7b526437
+# [SB PASS] ADDR=7d EXP=0 GOT=0
+# [SB] WRITE ADDR=8a DATA=636bb21f
+# [SB PASS] ADDR=69 EXP=0 GOT=0
+# [SB PASS] ADDR=36 EXP=0 GOT=0
+# [SB] WRITE ADDR=ea DATA=577b519f
+# [SB PASS] ADDR=6f EXP=0 GOT=0
+# [SB] WRITE ADDR=41 DATA=ef36b5e0
+# [SB PASS] ADDR=d9 EXP=0 GOT=0
+# [SB] WRITE ADDR=f8 DATA=b038569
+# [SB PASS] ADDR=82 EXP=0 GOT=0
+# [SB PASS] ADDR=da EXP=0 GOT=0
+# [SB PASS] ADDR=15 EXP=0 GOT=0
+# [SB] WRITE ADDR=40 DATA=fcf41ce5
+# [SB PASS] ADDR=49 EXP=0 GOT=0
+# [SB] WRITE ADDR=68 DATA=556d3902
+# [SB PASS] ADDR=47 EXP=0 GOT=0
+# [SB PASS] ADDR=df EXP=0 GOT=0
+# [SB PASS] ADDR=6 EXP=0 GOT=0
+# [SB] WRITE ADDR=bd DATA=109084bc
+# [SB] WRITE ADDR=5d DATA=e9b63cf2
+# [SB] WRITE ADDR=a4 DATA=a92e8509
+# [SB PASS] ADDR=3e EXP=0 GOT=0
+# [SB] WRITE ADDR=7a DATA=125d416f
+# [SB] WRITE ADDR=1c DATA=c8f0609b
+# [SB PASS] ADDR=3f EXP=0 GOT=0
+# [SB PASS] ADDR=d7 EXP=0 GOT=0
+# [SB] WRITE ADDR=ff DATA=e15381d8
+# [SB PASS] ADDR=f6 EXP=0 GOT=0
+# [SB] WRITE ADDR=17 DATA=6a4fd67a
+# [SB] WRITE ADDR=bb DATA=2bc66384
+# [SB] WRITE ADDR=4e DATA=4b300319
+# [SB PASS] ADDR=51 EXP=0 GOT=0
+# [SB] WRITE ADDR=87 DATA=e0582186
+# [SB PASS] ADDR=42 EXP=0 GOT=0
+# [SB PASS] ADDR=e2 EXP=0 GOT=0
+# [SB PASS] ADDR=96 EXP=0 GOT=0
+# [SB] WRITE ADDR=a3 DATA=4d953d1a
+# [SB PASS] ADDR=fa EXP=0 GOT=0
+# [SB] WRITE ADDR=cd DATA=51b3bf4f
+# [SB] WRITE ADDR=2 DATA=4cf59192
+# [SB] WRITE ADDR=5 DATA=a769d581
+# [SB PASS] ADDR=d7 EXP=0 GOT=0
+# [SB] WRITE ADDR=f3 DATA=8d48198d
+# 
+# ================================
+#       SCOREBOARD REPORT
+# ================================
+# TOTAL CHECKS : 36
+# PASS COUNT   : 36
+# FAIL COUNT   : 0
+# ================================
+# 
+# 
+# ================================
+#  FUNCTIONAL COVERAGE REPORT
+# ================================
+# Coverage = 87.50 %
+# ================================
+# 
+# TEST PASSED
+# ** Note: $finish    : testbench.sv(529)
+#    Time: 5045 ns  Iteration: 0  Instance: /top_tb
+# End time: 17:34:16 on Jun 03,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
+End time: 17:34:16 on Jun 03,2026, Elapsed time: 0:00:06
+*** Summary *********************************************
+    qrun: Errors:   0, Warnings:   0
+    vlog: Errors:   0, Warnings:   0
+    vopt: Errors:   0, Warnings:   1
+    vsim: Errors:   0, Warnings:   0
+  Totals: Errors:   0, Warnings:   1
