@@ -1,0 +1,230 @@
+# Architecture
+
+## RTL Architecture
+
+The project implements a parameterized AMBA APB3-compliant Master-Slave communication system.
+
+```text
+                 +----------------+
+                 |   APB Master   |
+                 |----------------|
+ User Control -->| start          |
+                 | write          |
+                 | addr           |
+                 | wdata          |
+                 +-------+--------+
+                         |
+                         | APB Bus
+                         |
+     +-------------------+-------------------+
+     | PSEL                              PREADY
+     | PENABLE                           PSLVERR
+     | PWRITE                            PRDATA
+     | PADDR
+     | PWDATA
+     v
+                 +----------------+
+                 |   APB Slave    |
+                 |----------------|
+                 | Memory Array   |
+                 | Wait States    |
+                 | Error Logic    |
+                 +-------+--------+
+                         |
+                         v
+                 +----------------+
+                 | Internal Memory|
+                 +----------------+
+```
+
+---
+
+## APB Transfer Flow
+
+```text
+        IDLE
+          |
+          | start
+          v
+       SETUP
+    PSEL = 1
+ PENABLE = 0
+          |
+          v
+      ACCESS
+    PSEL = 1
+ PENABLE = 1
+          |
+          | PREADY = 1
+          v
+        IDLE
+```
+
+---
+
+## Master Architecture
+
+### Responsibilities
+
+- Generate APB read/write transactions
+- Control APB protocol timing
+- Drive APB bus signals
+- Capture read data
+- Report transaction completion
+- Handle slave error responses
+
+### Internal Blocks
+
+```text
+          +------------------+
+          | FSM Controller   |
+          +--------+---------+
+                   |
+      +------------+------------+
+      |                         |
+      v                         v
++------------+         +---------------+
+| Address    |         | Data Register |
+| Register   |         |               |
++------------+         +---------------+
+      |                         |
+      +------------+------------+
+                   |
+                   v
+             APB Signals
+```
+
+---
+
+## Slave Architecture
+
+### Responsibilities
+
+- Receive APB transactions
+- Implement programmable wait states
+- Perform memory read/write operations
+- Generate PREADY response
+- Generate PSLVERR for invalid accesses
+
+### Internal Blocks
+
+```text
+             APB Interface
+                    |
+                    v
+        +----------------------+
+        | Wait-State Counter   |
+        +----------+-----------+
+                   |
+                   v
+        +----------------------+
+        | Address Decoder      |
+        +----------+-----------+
+                   |
+         +---------+---------+
+         |                   |
+         v                   v
+    Memory Write       Memory Read
+         |                   |
+         +---------+---------+
+                   |
+                   v
+                PRDATA
+```
+
+---
+
+# Verification Architecture
+
+A mailbox-based SystemVerilog verification environment is used to verify APB functionality.
+
+```text
+              +-------------+
+              | Generator   |
+              +------+------+
+                     |
+                     | mailbox
+                     v
+              +-------------+
+              | Driver      |
+              +------+------+
+                     |
+                     v
+               APB Interface
+                     |
+                     v
+                DUT (RTL)
+                     |
+                     v
+              +-------------+
+              | Monitor     |
+              +------+------+
+                     |
+                     | mailbox
+                     v
+              +-------------+
+              | Scoreboard  |
+              +-------------+
+
+                     |
+                     v
+
+              +-------------+
+              | Coverage    |
+              +-------------+
+
+              +-------------+
+              | Assertions  |
+              +-------------+
+```
+
+---
+
+## Verification Components
+
+### Generator
+- Creates constrained-random APB transactions
+- Generates read, write, and error scenarios
+
+### Driver
+- Converts transactions into pin-level APB activity
+- Drives DUT inputs through the interface
+
+### Monitor
+- Observes APB bus activity
+- Captures completed transactions
+
+### Scoreboard
+- Maintains reference memory model
+- Compares DUT responses against expected values
+
+### Functional Coverage
+Tracks:
+- Read transactions
+- Write transactions
+- Address ranges
+- Error responses
+- Cross coverage
+
+### Assertions (SVA)
+Checks:
+- PSEL asserted before PENABLE
+- Stable address during ACCESS phase
+- Stable write data during ACCESS phase
+- Correct transaction completion behavior
+
+---
+
+# Project Features
+
+- Parameterized APB Master
+- Parameterized APB Slave
+- Configurable Memory Depth
+- Configurable Wait States
+- Read/Write Transactions
+- Error Handling (PSLVERR)
+- Mailbox-Based Verification Environment
+- Scoreboard-Based Data Checking
+- SystemVerilog Assertions (SVA)
+- Functional Coverage Collection
+- Constrained-Random Verification
